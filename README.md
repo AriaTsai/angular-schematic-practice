@@ -26,3 +26,24 @@ npm publish
 ```
 
 That's it!
+
+## Notes
+
+新增專案
+
+```bash
+schematics blank --name=sample1
+```
+
+運作專案
+
+```bash
+schematics .:sample1
+```
+
+* --name=Aria 帶入option參數
+* --dry-run=false 預設為false，不會真的建立檔案
+
+```bash
+schematics .:sample1 --name=Aria --dry-run=false
+```
