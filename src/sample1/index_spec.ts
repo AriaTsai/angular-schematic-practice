@@ -4,20 +4,24 @@ import * as path from 'path';
 
 const collectionPath = path.join(__dirname, '../collection.json');
 
-describe('createFile', () => {
-    it('works', async () => {
+describe('sample1', () => {
+
+    const expectResult = (fileName?: string) => {
+        const filePath = `/${fileName || 'hello'}`
+        const params = fileName ? { name: fileName } : {}
         const runner = new SchematicTestRunner('schematics', collectionPath);
-        const tree = await runner
-            .runSchematicAsync('createFile', {}, Tree.empty())
-            .toPromise();
-        expect(tree.files).toBeTruthy()
+        runner.runSchematicAsync('sample1', params, Tree.empty()).subscribe(tree => {
+            expect(tree.files).toBeTruthy()
+            expect(tree.files).toContain(filePath)
+            expect(tree.readContent(filePath)).toContain('world')
+        })
+    }
+
+    it('default file name is hello, content is world', () => {
+        expectResult()
     });
 
-    it('default file name is hello', async () => {
-        const runner = new SchematicTestRunner('schematics', collectionPath);
-        const tree = await runner
-            .runSchematicAsync('createFile', {}, Tree.empty())
-            .toPromise();
-        expect(tree.files).toContain('/hello');
+    it('file name is aria, content is world', () => {
+        expectResult('aria')
     });
 });
