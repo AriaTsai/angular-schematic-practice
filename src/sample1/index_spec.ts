@@ -5,7 +5,6 @@ import * as path from 'path';
 const collectionPath = path.join(__dirname, '../collection.json');
 
 describe('sample1', () => {
-
     const expectResult = (fileName?: string) => {
         const filePath = `/${fileName || 'hello'}`
         const params = fileName ? { name: fileName } : {}
