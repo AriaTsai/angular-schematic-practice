@@ -4,28 +4,20 @@ import * as path from 'path';
 
 const collectionPath = path.join(__dirname, '../collection.json');
 
-describe('sample1', () => {
-  it('works', async () => {
-    const runner = new SchematicTestRunner('schematics', collectionPath);
-    const tree = await runner
-      .runSchematicAsync('sample1', {}, Tree.empty())
-      .toPromise();
-    expect(tree.files).toBeTruthy()
-  });
+describe('createFile', () => {
+    it('works', async () => {
+        const runner = new SchematicTestRunner('schematics', collectionPath);
+        const tree = await runner
+            .runSchematicAsync('createFile', {}, Tree.empty())
+            .toPromise();
+        expect(tree.files).toBeTruthy()
+    });
 
-  it('default file name is hello', async () => {
-    const runner = new SchematicTestRunner('schematics', collectionPath);
-    const tree = await runner
-      .runSchematicAsync('sample1', {}, Tree.empty())
-      .toPromise();
-    expect(tree.files).toContain('/hello');
-  });
-
-  it('default file name is hello', async () => {
-    const runner = new SchematicTestRunner('schematics', collectionPath);
-    const tree = await runner
-      .runSchematicAsync('sample1', {}, Tree.empty())
-      .toPromise();
-    expect(tree.files).toContain('/hello');
-  });
+    it('default file name is hello', async () => {
+        const runner = new SchematicTestRunner('schematics', collectionPath);
+        const tree = await runner
+            .runSchematicAsync('createFile', {}, Tree.empty())
+            .toPromise();
+        expect(tree.files).toContain('/hello');
+    });
 });
